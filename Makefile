@@ -4,12 +4,12 @@ test:
 	pytest tests/ -v --disable-socket --allow-unix-socket
 
 lint:
-	ruff check langchain_markdown_extract/ tests/
-	ruff format --check langchain_markdown_extract/ tests/
+	ruff check langchain_md_extract/ tests/
+	ruff format --check langchain_md_extract/ tests/
 
 format:
-	ruff check --fix langchain_markdown_extract/ tests/
-	ruff format langchain_markdown_extract/ tests/
+	ruff check --fix langchain_md_extract/ tests/
+	ruff format langchain_md_extract/ tests/
 
 build:
 	python -m build

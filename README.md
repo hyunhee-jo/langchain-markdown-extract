@@ -1,5 +1,5 @@
 <!-- AI-AGENT-SUMMARY
-name: langchain-markdown-extract
+name: langchain-md-extract
 category: LangChain document loader, Markdown extraction for RAG
 license: Apache-2.0
 solves: [Load Markdown files as LangChain Document objects, section-level splitting]
@@ -10,24 +10,24 @@ requirements: Python 3.10+
 key-differentiators: [LangChain-native BaseLoader, per-section splitting, auto-synced from upstream]
 -->
 
-# langchain-markdown-extract
+# langchain-md-extract
 
-[![CI](https://github.com/hyunhee-jo/langchain-markdown-extract/actions/workflows/ci.yml/badge.svg)](https://github.com/hyunhee-jo/langchain-markdown-extract/actions/workflows/ci.yml)
+[![CI](https://github.com/hyunhee-jo/langchain-md-extract/actions/workflows/ci.yml/badge.svg)](https://github.com/hyunhee-jo/langchain-md-extract/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
-A LangChain Document Loader for [markdown-extract](https://github.com/hyunhee-jo/markdown-extract).
+A LangChain Document Loader for [md-extract](https://github.com/hyunhee-jo/md-extract).
 
 ## Installation
 
 ```bash
-pip install langchain-markdown-extract
+pip install langchain-md-extract
 ```
 
 ## Quick Start
 
 ```python
-from langchain_markdown_extract import MarkdownExtractLoader
+from langchain_md_extract import MarkdownExtractLoader
 
 # Load a single file
 loader = MarkdownExtractLoader("README.md")

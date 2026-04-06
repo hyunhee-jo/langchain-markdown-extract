@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a bug in langchain-markdown-extract
+description: Report a bug in langchain-md-extract
 labels: [bug]
 body:
   - type: textarea

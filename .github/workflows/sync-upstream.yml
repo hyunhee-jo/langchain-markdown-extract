@@ -46,7 +46,7 @@ jobs:
       - name: Sparse checkout upstream
         uses: actions/checkout@v4
         with:
-          repository: hyunhee-jo/markdown-extract
+          repository: hyunhee-jo/md-extract
           ref: "v${{ steps.version.outputs.value }}"
           path: upstream
           sparse-checkout: |
@@ -72,7 +72,7 @@ jobs:
           mkdir -p .sync-report
           node upstream/scripts/generate-langchain.mjs \
             --options upstream/options.json \
-            --target langchain_markdown_extract/document_loaders.py \
+            --target langchain_md_extract/document_loaders.py \
             --readme README.md \
             --version "$VERSION" \
             --pr-body .sync-report/pr-body.md
@@ -81,7 +81,7 @@ jobs:
         env:
           VERSION: ${{ steps.version.outputs.value }}
         run: |
-          sed -i "s/\"markdown-extract>=.*\"/\"markdown-extract>=${VERSION}\"/" pyproject.toml
+          sed -i "s/\"md-extract>=.*\"/\"md-extract>=${VERSION}\"/" pyproject.toml
 
       - name: Check for changes
         id: changes
@@ -125,7 +125,7 @@ jobs:
           VERSION: ${{ needs.generate.outputs.version }}
         run: |
           for i in $(seq 1 20); do
-            if pip install --dry-run "markdown-extract==${VERSION}" 2>/dev/null; then
+            if pip install --dry-run "md-extract==${VERSION}" 2>/dev/null; then
               echo "Version ${VERSION} available on PyPI"
               break
             fi

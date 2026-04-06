@@ -2,13 +2,13 @@
 
 ## Project Overview
 
-langchain-markdown-extract is a LangChain Document Loader that wraps markdown-extract.
+langchain-md-extract is a LangChain Document Loader that wraps md-extract.
 
 ## Architecture
 
-- `langchain_markdown_extract/document_loaders.py` — Core loader (BaseLoader subclass)
+- `langchain_md_extract/document_loaders.py` — Core loader (BaseLoader subclass)
 - 3 SYNCED marker blocks: PARAMS, ASSIGNMENTS, CONVERT KWARGS
-- Parameters are auto-generated from upstream markdown-extract's options.json
+- Parameters are auto-generated from upstream md-extract's options.json
 
 ## Key Design Decisions
 

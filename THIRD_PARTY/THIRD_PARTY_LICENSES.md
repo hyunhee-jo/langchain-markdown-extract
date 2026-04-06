@@ -7,7 +7,7 @@ This project depends on the following third-party packages:
 - License: MIT
 - Repository: https://github.com/langchain-ai/langchain
 
-## markdown-extract
+## md-extract
 
 - License: MIT
-- Repository: https://github.com/hyunhee-jo/markdown-extract
+- Repository: https://github.com/hyunhee-jo/md-extract

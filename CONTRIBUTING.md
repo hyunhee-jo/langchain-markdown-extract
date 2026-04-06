@@ -3,8 +3,8 @@
 ## Development Setup
 
 ```bash
-git clone https://github.com/hyunhee-jo/langchain-markdown-extract.git
-cd langchain-markdown-extract
+git clone https://github.com/hyunhee-jo/langchain-md-extract.git
+cd langchain-md-extract
 pip install -e .
 pip install pytest pytest-socket ruff mypy
 ```
@@ -12,7 +12,7 @@ pip install pytest pytest-socket ruff mypy
 ## Important: SYNCED Markers
 
 Code between `# --- BEGIN SYNCED ... ---` and `# --- END SYNCED ... ---` markers
-is auto-generated from upstream markdown-extract. **Do not edit these blocks manually.**
+is auto-generated from upstream md-extract. **Do not edit these blocks manually.**
 
 ## Running Tests
 

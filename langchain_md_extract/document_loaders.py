@@ -1,4 +1,4 @@
-"""LangChain Document Loader for markdown-extract."""
+"""LangChain Document Loader for md-extract."""
 
 from __future__ import annotations
 
@@ -9,21 +9,21 @@ from typing import Any, Iterator, List, Optional, Union
 
 from langchain_core.document_loaders.base import BaseLoader
 from langchain_core.documents import Document
-from markdown_extract import extract as _extract
+from md_extract import extract as _extract
 
 logger = logging.getLogger(__name__)
 
 
 class MarkdownExtractLoader(BaseLoader):
-    """Load Markdown files using markdown-extract and return LangChain Documents.
+    """Load Markdown files using md-extract and return LangChain Documents.
 
-    This loader wraps the markdown-extract library to parse Markdown files
+    This loader wraps the md-extract library to parse Markdown files
     and return structured content as LangChain Document objects.
 
     Example:
         .. code-block:: python
 
-            from langchain_markdown_extract import MarkdownExtractLoader
+            from langchain_md_extract import MarkdownExtractLoader
 
             loader = MarkdownExtractLoader("README.md")
             docs = loader.load()
@@ -51,7 +51,7 @@ class MarkdownExtractLoader(BaseLoader):
 
         Args:
             file_path: Path to a Markdown file, directory, or list of paths.
-            format: Output format from markdown-extract. Default: "text".
+            format: Output format from md-extract. Default: "text".
             quiet: Suppress console logging output.
             heading_level: Filter by heading levels (comma-separated).
             sections: Extract only sections matching heading text (comma-separated).

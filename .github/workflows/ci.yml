@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: pip install -e . pytest pytest-socket pytest-cov
       - name: Run tests
-        run: pytest tests/test_document_loaders.py -v --disable-socket --allow-unix-socket --cov=langchain_markdown_extract --cov-report=xml
+        run: pytest tests/test_document_loaders.py -v --disable-socket --allow-unix-socket --cov=langchain_md_extract --cov-report=xml
       - name: Upload coverage
         if: matrix.python-version == '3.13'
         uses: codecov/codecov-action@v5
@@ -44,7 +44,7 @@ jobs:
           python-version: '3.10'
       - name: Install minimum versions
         run: |
-          pip install langchain-core==1.0.0 markdown-extract==0.1.0
+          pip install langchain-core==1.0.0 md-extract==0.1.0
           pip install -e . --no-deps
           pip install pytest pytest-socket
       - name: Run tests
@@ -61,6 +61,6 @@ jobs:
       - name: Install tools
         run: pip install ruff mypy langchain-core
       - name: Ruff check
-        run: ruff check langchain_markdown_extract/ tests/
+        run: ruff check langchain_md_extract/ tests/
       - name: Ruff format check
-        run: ruff format --check langchain_markdown_extract/ tests/
+        run: ruff format --check langchain_md_extract/ tests/

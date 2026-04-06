@@ -8,7 +8,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from langchain_markdown_extract import MarkdownExtractLoader
+from langchain_md_extract import MarkdownExtractLoader
 
 
 class TestMarkdownExtractLoaderInit:
@@ -109,7 +109,7 @@ class TestMarkdownExtractLoaderLoad:
         )
 
         with patch(
-            "langchain_markdown_extract.document_loaders._extract", return_value=mock_result
+            "langchain_md_extract.document_loaders._extract", return_value=mock_result
         ):
             loader = MarkdownExtractLoader(md, format="json")
             docs = loader.load()
@@ -128,7 +128,7 @@ class TestMarkdownExtractLoaderLoad:
         mock_result = "# Intro\n\nHello world.\n\n## Details\n\nSome details."
 
         with patch(
-            "langchain_markdown_extract.document_loaders._extract", return_value=mock_result
+            "langchain_md_extract.document_loaders._extract", return_value=mock_result
         ):
             loader = MarkdownExtractLoader(md, format="text")
             docs = loader.load()
@@ -154,7 +154,7 @@ class TestMarkdownExtractLoaderLoad:
         md = tmp_path / "test.md"
         md.write_text("# Test", encoding="utf-8")
 
-        with patch("langchain_markdown_extract.document_loaders._extract") as mock:
+        with patch("langchain_md_extract.document_loaders._extract") as mock:
             mock.return_value = "# Test\n\nContent"
             loader = MarkdownExtractLoader(
                 md,
@@ -187,7 +187,7 @@ class TestMarkdownExtractLoaderLoad:
         )
 
         with patch(
-            "langchain_markdown_extract.document_loaders._extract",
+            "langchain_md_extract.document_loaders._extract",
             side_effect=lambda *a, **kw: next(mock_results),
         ):
             loader = MarkdownExtractLoader([md1, md2], format="json")
@@ -207,7 +207,7 @@ class TestMarkdownExtractLoaderLoad:
         md.write_text("# Test", encoding="utf-8")
 
         with patch(
-            "langchain_markdown_extract.document_loaders._extract",
+            "langchain_md_extract.document_loaders._extract",
             side_effect=RuntimeError("parse error"),
         ):
             loader = MarkdownExtractLoader(md)

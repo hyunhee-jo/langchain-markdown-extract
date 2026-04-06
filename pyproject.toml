@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "langchain-markdown-extract"
+name = "langchain-md-extract"
 version = "0.0.0"
-description = "A LangChain integration for markdown-extract"
+description = "A LangChain integration for md-extract"
 authors = [{ name = "hyunhee-jo" }]
 requires-python = ">=3.10,<4.0"
 readme = "README.md"
@@ -23,14 +23,14 @@ classifiers = [
 
 dependencies = [
     "langchain-core>=1.0,<2.0",
-    "markdown-extract>=0.1.0",
+    "md-extract>=0.1.0",
 ]
 
 [project.urls]
-Repository = "https://github.com/hyunhee-jo/langchain-markdown-extract"
-"Upstream Engine" = "https://github.com/hyunhee-jo/markdown-extract"
-Issues = "https://github.com/hyunhee-jo/langchain-markdown-extract/issues"
-Changelog = "https://github.com/hyunhee-jo/langchain-markdown-extract/blob/main/CHANGELOG.md"
+Repository = "https://github.com/hyunhee-jo/langchain-md-extract"
+"Upstream Engine" = "https://github.com/hyunhee-jo/md-extract"
+Issues = "https://github.com/hyunhee-jo/langchain-md-extract/issues"
+Changelog = "https://github.com/hyunhee-jo/langchain-md-extract/blob/main/CHANGELOG.md"
 
 [dependency-groups]
 dev = [
@@ -41,7 +41,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["langchain_markdown_extract"]
+packages = ["langchain_md_extract"]
 
 [tool.ruff]
 line-length = 100
