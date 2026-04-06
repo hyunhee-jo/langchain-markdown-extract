@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.12', '3.13']
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: pip install -e . pytest pytest-socket
+      - name: Run tests
+        run: pytest tests/test_document_loaders.py -v --disable-socket --allow-unix-socket
+
+  min-dep-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install minimum versions
+        run: |
+          pip install langchain-core==1.0.0 markdown-extract==0.1.0
+          pip install -e . --no-deps
+          pip install pytest pytest-socket
+      - name: Run tests
+        run: pytest tests/test_document_loaders.py -v --disable-socket --allow-unix-socket
+
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install tools
+        run: pip install ruff mypy langchain-core
+      - name: Ruff check
+        run: ruff check langchain_markdown_extract/ tests/
+      - name: Ruff format check
+        run: ruff format --check langchain_markdown_extract/ tests/

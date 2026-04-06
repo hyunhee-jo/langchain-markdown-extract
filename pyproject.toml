@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "langchain-markdown-extract"
+version = "0.0.0"
+description = "A LangChain integration for markdown-extract"
+authors = [{ name = "hyunhee-jo" }]
+requires-python = ">=3.10,<4.0"
+readme = "README.md"
+license = "Apache-2.0"
+keywords = ["langchain", "markdown", "parser", "document-loader", "rag"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Text Processing :: Markup :: Markdown",
+]
+
+dependencies = [
+    "langchain-core>=1.0,<2.0",
+    "markdown-extract>=0.1.0",
+]
+
+[project.urls]
+Repository = "https://github.com/hyunhee-jo/langchain-markdown-extract"
+"Upstream Engine" = "https://github.com/hyunhee-jo/markdown-extract"
+Issues = "https://github.com/hyunhee-jo/langchain-markdown-extract/issues"
+Changelog = "https://github.com/hyunhee-jo/langchain-markdown-extract/blob/main/CHANGELOG.md"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-socket>=0.7.0",
+    "ruff>=0.9.0",
+    "mypy>=1.14",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["langchain_markdown_extract"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
