@@ -180,3 +180,42 @@ jobs:
             --head "$BRANCH" \
             --label "$LABELS" \
             $DRAFT_FLAG || echo "PR already exists"
+
+      - name: Slack notification
+        if: always()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          VERSION: ${{ needs.generate.outputs.version }}
+          BREAKING: ${{ needs.generate.outputs.breaking }}
+          TEST_RESULT: ${{ needs.test.result }}
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          if [ -z "$SLACK_WEBHOOK" ]; then
+            echo "SLACK_WEBHOOK_URL not set, skipping"
+            exit 0
+          fi
+
+          if [ "$TEST_RESULT" = "success" ]; then
+            STATUS="✅ Ready"
+            COLOR="#36a64f"
+          else
+            STATUS="⚠️ Draft (test failed)"
+            COLOR="#ff9900"
+          fi
+
+          if [ "$BREAKING" = "true" ]; then
+            STATUS="🚨 Breaking — $STATUS"
+            COLOR="#ff0000"
+          fi
+
+          curl -s -X POST "$SLACK_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"attachments\": [{
+                \"color\": \"$COLOR\",
+                \"title\": \"Sync PR: upstream v$VERSION\",
+                \"title_link\": \"$REPO_URL/pulls\",
+                \"text\": \"Status: $STATUS\nTests: $TEST_RESULT\",
+                \"footer\": \"langchain-jostack-mdparse\"
+              }]
+            }"
