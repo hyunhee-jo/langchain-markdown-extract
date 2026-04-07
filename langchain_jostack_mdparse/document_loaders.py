@@ -35,8 +35,8 @@ class MarkdownExtractLoader(BaseLoader):
         # --- BEGIN SYNCED PARAMS ---
         format: str = "text",
         quiet: bool = False,
-        heading_level: Optional[str] = None,
-        sections: Optional[str] = None,
+        heading_level: Optional[Union[str, List[str]]] = None,
+        sections: Optional[Union[str, List[str]]] = None,
         include_frontmatter: bool = True,
         strip_html: bool = False,
         include_code_blocks: bool = True,
@@ -44,7 +44,8 @@ class MarkdownExtractLoader(BaseLoader):
         flatten_lists: bool = False,
         section_separator: Optional[str] = None,
         normalize_links: bool = False,
-        # --- END SYNCED PARAMS ---
+        detect_tables: bool = False,
+# --- END SYNCED PARAMS ---
         split_sections: bool = True,
     ) -> None:
         """Initialize the loader.
@@ -81,7 +82,8 @@ class MarkdownExtractLoader(BaseLoader):
         self.flatten_lists = flatten_lists
         self.section_separator = section_separator
         self.normalize_links = normalize_links
-        # --- END SYNCED ASSIGNMENTS ---
+        self.detect_tables = detect_tables
+# --- END SYNCED ASSIGNMENTS ---
 
         self.split_sections = split_sections
 
@@ -98,6 +100,7 @@ class MarkdownExtractLoader(BaseLoader):
             # --- BEGIN SYNCED CONVERT KWARGS ---
             convert_kwargs: dict[str, Any] = {
                 "format": self.format,
+                "quiet": self.quiet,
                 "heading_level": self.heading_level,
                 "sections": self.sections,
                 "include_frontmatter": self.include_frontmatter,
@@ -107,8 +110,9 @@ class MarkdownExtractLoader(BaseLoader):
                 "flatten_lists": self.flatten_lists,
                 "section_separator": self.section_separator,
                 "normalize_links": self.normalize_links,
+                "detect_tables": self.detect_tables,
             }
-            # --- END SYNCED CONVERT KWARGS ---
+# --- END SYNCED CONVERT KWARGS ---
 
             try:
                 result = _extract(
