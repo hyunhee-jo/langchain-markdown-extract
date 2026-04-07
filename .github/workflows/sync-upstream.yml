@@ -148,17 +148,11 @@ jobs:
         with:
           ref: ${{ needs.generate.outputs.branch }}
 
-      - name: Read PR body
-        id: pr-body
+      - name: Prepare PR body
         run: |
-          if [ -f .sync-report/pr-body.md ]; then
-            BODY=$(cat .sync-report/pr-body.md)
-          else
-            BODY="Sync upstream v${{ needs.generate.outputs.version }}"
+          if [ ! -f .sync-report/pr-body.md ]; then
+            echo "Sync upstream v${{ needs.generate.outputs.version }}" > .sync-report/pr-body.md
           fi
-          echo "body<<EOF" >> "$GITHUB_OUTPUT"
-          echo "$BODY" >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
 
       - name: Create PR
         env:
@@ -180,7 +174,7 @@ jobs:
 
           gh pr create \
             --title "sync: update parameters from upstream v${VERSION}" \
-            --body "${{ steps.pr-body.outputs.body }}" \
+            --body-file .sync-report/pr-body.md \
             --base main \
             --head "$BRANCH" \
             --label "$LABELS" \
