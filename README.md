@@ -54,17 +54,18 @@ docs = loader.load()
 | `file_path` | `str \| Path \| List` | — | (Required) Path to Markdown file(s) |
 | `split_sections` | `bool` | `True` | Split output into per-section Documents |
 <!-- BEGIN SYNCED PARAMS TABLE -->
-| `format` | `str` | `"text"` | Output format: json, text, html |
-| `quiet` | `bool` | `False` | Suppress console logging |
-| `heading_level` | `str` | `None` | Filter by heading levels (comma-separated) |
-| `sections` | `str` | `None` | Extract sections by heading text (comma-separated) |
-| `include_frontmatter` | `bool` | `True` | Include YAML/TOML frontmatter |
-| `strip_html` | `bool` | `False` | Strip inline HTML tags |
-| `include_code_blocks` | `bool` | `True` | Include fenced code blocks |
-| `include_toc` | `bool` | `False` | Add generated table of contents |
-| `flatten_lists` | `bool` | `False` | Flatten nested lists |
-| `section_separator` | `str` | `None` | Separator between sections |
-| `normalize_links` | `bool` | `False` | Convert relative links to absolute |
+| `format` | `str` | `"text"` | Output format. Values: json, text, html. Default: json |
+| `quiet` | `bool` | `False` | Suppress console logging output |
+| `heading_level` | `str` | `None` | Filter by heading levels (comma-separated, e.g. '1,2,3'). Default: all levels |
+| `sections` | `str` | `None` | Extract only sections matching the given heading text (comma-separated). Case-insensitive substring match |
+| `include_frontmatter` | `bool` | `True` | Include YAML/TOML frontmatter in output. Default: true |
+| `strip_html` | `bool` | `False` | Strip inline HTML tags from Markdown content |
+| `include_code_blocks` | `bool` | `True` | Include fenced code blocks in output. Default: true |
+| `include_toc` | `bool` | `False` | Add a generated table of contents to the output |
+| `flatten_lists` | `bool` | `False` | Flatten nested lists into a single level |
+| `section_separator` | `str` | `None` | Separator between sections in text output. Use %section-title% for heading text. Default: none |
+| `normalize_links` | `bool` | `False` | Convert relative links to absolute using the source file path |
+| `detect_tables` | `bool` | `False` | Detect and extract Markdown tables as structured data |
 <!-- END SYNCED PARAMS TABLE -->
 
 ## Development
